@@ -116,10 +116,11 @@ public class CharactorBaseController : MonoBehaviourPunCallbacks
         }
         //速度が_MaxSpeed以内であれば加速させます
         if (_Rb.velocity.magnitude < _MaxSpeed * Boost)
-        {
+        {            
             _Rb.AddForce(_MoveVec.normalized * _MoveSpeed * _MoveSpeed * Boost * Time.deltaTime);
         }
         Player_pos = transform.position;
+        Debug.Log(_MoveVec);
     }
     //センサーから接地判定をとるときに干渉させるプログラム
     public virtual void OnGround()
