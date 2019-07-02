@@ -7,14 +7,12 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Transform player;          // 注視対象プレイヤー
     public Transform verRot;
     public Transform horRot;
-
-    // Use this for initialization
+    
     void Start()
     {
         horRot = GetComponent<Transform>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         player = transform.root.gameObject.GetComponent<Transform>();

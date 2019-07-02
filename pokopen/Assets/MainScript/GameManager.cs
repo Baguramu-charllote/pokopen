@@ -9,8 +9,9 @@ using Photon.Realtime;
 public static class Data
 {
     public static bool[] Charactor_state = new bool[4];
+    public static string CharactorName ;
 }
-public class GameManager : MonoBehaviourPunCallbacks
+ public class GameManager : MonoBehaviourPunCallbacks
 {
     Camera Main;
     Text ResultText;
@@ -53,6 +54,39 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
         if (State_No == 4) ResultText.text = "Victory";
     }
+
+    public void PlayerInstans()
+    {
+        //// マッチング後、ランダムな位置に自分自身のネットワークオブジェクトを生成する…らしい
+        //var v = new Vector3(Random.Range(-5f, 5f), Random.Range(10f, 15f));
+        //if (Data.CharactorName == "oni")
+        //{
+        //    // PhotonNetwork.InstantiateはResorcesというファイルに入っているprefabを名前を直接指定して生成する
+        //    GameObject Obj = PhotonNetwork.Instantiate("Oreg_Player", v, Quaternion.identity);
+        //    //メインカメラの親を生成したゲームオブジェクトに指定してあげる
+        //    Main.transform.parent = Obj.transform;
+        //    //メインカメラの座標をObjに合わせてあげてFPS視点にしてあげている
+        //    Main.transform.position = Obj.transform.position;
+        //}
+        //else if(Data.CharactorName == "GM")
+        //{
+        //    // PhotonNetwork.InstantiateはResorcesというファイルに入っているprefabを名前を直接指定して生成する
+        //    GameObject Obj = PhotonNetwork.Instantiate("GM_Player", v, Quaternion.identity);
+        //    //メインカメラの親を生成したゲームオブジェクトに指定してあげる
+        //    Main.transform.parent = Obj.transform;
+        //    //メインカメラの座標をObjに合わせてあげてFPS視点にしてあげている
+        //    Main.transform.position = Obj.transform.position;
+        //}
+        //else
+        //{
+        //    // PhotonNetwork.InstantiateはResorcesというファイルに入っているprefabを名前を直接指定して生成する
+        //    GameObject Obj = PhotonNetwork.Instantiate("Runaway_Player", v, Quaternion.identity);
+        //    //メインカメラの親を生成したゲームオブジェクトに指定してあげる
+        //    Main.transform.parent = Obj.transform;
+        //    //メインカメラの座標をObjに合わせてあげてFPS視点にしてあげている
+        //    Main.transform.position = Obj.transform.position;
+        //}
+    }
     // // マスターサーバーへの接続が成功した時に呼ばれるコールバック…らしい
     public override void OnConnectedToMaster()
     {
@@ -63,12 +97,41 @@ public class GameManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         // マッチング後、ランダムな位置に自分自身のネットワークオブジェクトを生成する…らしい
-        var v = new Vector3(Random.Range(-3f, 3f), Random.Range(10f, 15f));
+        var v = new Vector3(Random.Range(-5f, 5f), Random.Range(10f, 15f));
+        if (Data.CharactorName == "oni")
+        {
+            // PhotonNetwork.InstantiateはResorcesというファイルに入っているprefabを名前を直接指定して生成する
+            GameObject Obj = PhotonNetwork.Instantiate("Oreg_Player", v, Quaternion.identity);
+            //メインカメラの親を生成したゲームオブジェクトに指定してあげる
+            Main.transform.parent = Obj.transform;
+            //メインカメラの座標をObjに合わせてあげてFPS視点にしてあげている
+            Main.transform.position = Obj.transform.position;
+        }
+        else if (Data.CharactorName == "GM")
+        {
+            // PhotonNetwork.InstantiateはResorcesというファイルに入っているprefabを名前を直接指定して生成する
+            GameObject Obj = PhotonNetwork.Instantiate("GM_Player", v, Quaternion.identity);
+            //メインカメラの親を生成したゲームオブジェクトに指定してあげる
+            Main.transform.parent = Obj.transform;
+            //メインカメラの座標をObjに合わせてあげてFPS視点にしてあげている
+            Main.transform.position = Obj.transform.position;
+        }
+        else
+        {
+            // PhotonNetwork.InstantiateはResorcesというファイルに入っているprefabを名前を直接指定して生成する
+            GameObject Obj = PhotonNetwork.Instantiate("Runaway_Player", v, Quaternion.identity);
+            //メインカメラの親を生成したゲームオブジェクトに指定してあげる
+            Main.transform.parent = Obj.transform;
+            //メインカメラの座標をObjに合わせてあげてFPS視点にしてあげている
+            Main.transform.position = Obj.transform.position;
+        }
+        // マッチング後、ランダムな位置に自分自身のネットワークオブジェクトを生成する…らしい
+        //var v = new Vector3(Random.Range(-3f, 3f), Random.Range(10f, 15f));
         // PhotonNetwork.InstantiateはResorcesというファイルに入っているprefabを名前を直接指定して生成する
-        GameObject Obj = PhotonNetwork.Instantiate("Oreg_Player", v, Quaternion.identity);
+        //GameObject Obj = PhotonNetwork.Instantiate("Oreg_Player", v, Quaternion.identity);
         //メインカメラの親を生成したゲームオブジェクトに指定してあげる
-        Main.transform.parent = Obj.transform;
+        //Main.transform.parent = Obj.transform;
         //メインカメラの座標をObjに合わせてあげてFPS視点にしてあげている
-        Main.transform.position = Obj.transform.position;
+        //Main.transform.position = Obj.transform.position;
     }
 }
