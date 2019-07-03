@@ -23,6 +23,8 @@ public class CharactorBaseController : MonoBehaviourPunCallbacks
     Vector3 Player_pos;
     //プレイヤーの行動を確認するための変数。enum：NowMoveNameの中身を使って入れてください。
     int Status;
+    //動きを止める
+    public bool IsMove;
     [HideInInspector] public float _dx = 0, _dy = 0, _dz = 0;
     [HideInInspector] public Rigidbody _Rb;
     [HideInInspector] public Animator _Ani;
@@ -56,6 +58,7 @@ public class CharactorBaseController : MonoBehaviourPunCallbacks
         Status = 0;
         Boost = 1;
         IsJump = false;
+        IsMove = false;
         Player_pos = transform.position;
         _Rb = GetComponent<Rigidbody>();
         _Ani = GetComponent<Animator>();
@@ -65,11 +68,14 @@ public class CharactorBaseController : MonoBehaviourPunCallbacks
     {
         if (photonView.IsMine)
         {
-            //移動
-            Moving();
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (!IsMove)
             {
-                Jumping();
+                //移動
+                Moving();
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    Jumping();
+                }
             }
         }
     }
