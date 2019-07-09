@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GM_PlayerController : CharactorBaseController
 {
-    //Rayを使うときに当たったオブジェクトを取っておくためのもの
+    //Rayを使うときに当たったオブジェクトを取っておくためのもの。
     RaycastHit Hit;
     public override void Start()
     {
